@@ -73,7 +73,8 @@
 
   /* Video cards */
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-  .player { position: relative; aspect-ratio: 16 / 9; background: #10161F; }
+  .player { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 74vh; background: #10161F; }
+  .grid .player { max-height: 62vh; }
   .player video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #10161F; }
   .missing {
     position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
@@ -89,7 +90,12 @@
   .featured { border: 2px solid var(--blue); }
   .featured .meta h3 { font-size: 19px; }
 
-  .grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; }
+  .chapters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .chapters button { font: inherit; font-size: 13.5px; font-weight: 600; color: var(--blue); background: var(--blue-tint); border: 0; border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+  .chapters button b { color: var(--ink); margin-right: 6px; font-variant-numeric: tabular-nums; }
+  .chapters button:hover, .chapters button:focus-visible { background: var(--blue); color: #FFFFFF; outline: none; }
+  .chapters button:hover b, .chapters button:focus-visible b { color: #FFFFFF; }
 
   /* Steps */
   .steps { display: grid; grid-template-columns: 1fr; gap: 12px; counter-reset: s; }
@@ -116,6 +122,8 @@
     .takehome { font-size: 19px; padding: 18px 24px; margin-top: -22px; }
     h2 { font-size: 25px; }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .grid .player { max-height: 520px; }
+    .featured .player { max-height: 640px; }
     .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .stat b { font-size: 32px; }
@@ -145,11 +153,16 @@
     <h2 id="new-user">A new user, right after calibration</h2>
     <p class="lead">This user was not in the training data. They wear the sensor, record one 60 s calibration without gesture labels, and start using the interface.</p>
     <article class="card featured">
-      <div class="player" data-src="videos/video3.mp4" data-poster="videos/video3.jpg" data-featured></div>
+      <div class="player" style="aspect-ratio: 478 / 480" data-src="videos/video3.mp4" data-poster="videos/video3.jpg" data-featured data-start="32.9"></div>
       <div class="meta">
         <span class="label">SUPPLEMENTARY VIDEO 3</span>
         <h3>Generalizability of the model to new users</h3>
         <p>A new user performs tasks in the virtual environment with the pre-built model after a single 60 s calibration, without labels or retraining.</p>
+        <div class="chapters" aria-label="Jump to">
+          <button type="button" data-t="0"><b>0:00</b>Model builder</button>
+          <button type="button" data-t="10"><b>0:10</b>Switching to a new user (3×)</button>
+          <button type="button" data-t="32.9"><b>0:33</b>New user: no labels, no retraining</button>
+        </div>
       </div>
     </article>
   </section>
@@ -169,7 +182,7 @@
     <p class="lead">Real devices and a real-time hand simulator, driven by two sensor channels.</p>
     <div class="grid">
       <article class="card">
-        <div class="player" data-src="videos/video5.mp4" data-poster="videos/video5.jpg"></div>
+        <div class="player" style="aspect-ratio: 854 / 480" data-src="videos/video5.mp4" data-poster="videos/video5.jpg"></div>
         <div class="meta">
           <span class="label">SUPPLEMENTARY VIDEO 5</span>
           <h3>Gesture-based control of diverse real-world devices</h3>
@@ -177,7 +190,7 @@
         </div>
       </article>
       <article class="card">
-        <div class="player" data-src="videos/video4.mp4" data-poster="videos/video4.jpg"></div>
+        <div class="player" style="aspect-ratio: 958 / 1280" data-src="videos/video4.mp4" data-poster="videos/video4.jpg"></div>
         <div class="meta">
           <span class="label">SUPPLEMENTARY VIDEO 4</span>
           <h3>Hand movement replication in a physics-based simulator</h3>
@@ -192,7 +205,7 @@
     <p class="lead">Labelled data are recorded once to build the model. New users only calibrate.</p>
     <div class="grid">
       <article class="card">
-        <div class="player" data-src="videos/video1.mp4" data-poster="videos/video1.jpg"></div>
+        <div class="player" style="aspect-ratio: 816 / 684" data-src="videos/video1.mp4" data-poster="videos/video1.jpg"></div>
         <div class="meta">
           <span class="label">SUPPLEMENTARY VIDEO 1</span>
           <h3>Data acquisition process for model training</h3>
@@ -200,7 +213,7 @@
         </div>
       </article>
       <article class="card">
-        <div class="player" data-src="videos/video2.mp4" data-poster="videos/video2.jpg"></div>
+        <div class="player" style="aspect-ratio: 270 / 480" data-src="videos/video2.mp4" data-poster="videos/video2.jpg"></div>
         <div class="meta">
           <span class="label">SUPPLEMENTARY VIDEO 2</span>
           <h3>Task performance of the model builder in a virtual environment</h3>
@@ -241,7 +254,13 @@
     v.playsInline = true;
     v.setAttribute('playsinline', '');
     v.preload = featured ? 'metadata' : 'none';
-    if (featured) { v.muted = true; v.loop = true; v.autoplay = true; v.setAttribute('muted', ''); }
+    if (featured) {
+      // Autoplay the new user's part (no labels, no retraining) on a loop; the chapter buttons reach the rest.
+      var start = parseFloat(box.getAttribute('data-start') || '0');
+      v.muted = true; v.autoplay = true; v.setAttribute('muted', '');
+      v.addEventListener('loadedmetadata', function () { if (v.currentTime < start) v.currentTime = start; }, { once: true });
+      v.addEventListener('ended', function () { v.currentTime = start; var p = v.play(); if (p && p.catch) p.catch(function () {}); });
+    }
     var img = new Image();
     img.onload = function () { v.poster = poster; };
     img.src = poster;
@@ -253,6 +272,14 @@
     box.appendChild(v);
     // A HEAD request catches a missing file even when preload is "none".
     fetch(src, { method: 'HEAD' }).then(function (r) { if (!r.ok) showMissing(box, src); }).catch(function () {});
+  });
+  document.querySelectorAll('.chapters button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.closest('article').querySelector('video');
+      if (!v) return;
+      v.currentTime = parseFloat(b.getAttribute('data-t'));
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
   });
   function showMissing(box, src) {
     if (box.querySelector('.missing')) return;

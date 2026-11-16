@@ -18,8 +18,10 @@ Demo page for the poster **SB12.07.05**, MRS Fall Meeting 2026 (Boston, December
 | `videos/video4.mp4` | 4. Hand movement replication in a physics-based simulator |
 | `videos/video5.mp4` | 5. Gesture-based control of diverse real-world devices |
 
-Each video can have a thumbnail with the same name and `.jpg` (for example `videos/video3.jpg`).
-Until a video file is added, the page shows a "Video coming soon" placeholder in its place.
+Each video has a thumbnail with the same name and `.jpg` (for example `videos/video3.jpg`).
+If a video file is missing, the page shows a "Video coming soon" placeholder in its place.
+
+The web versions are re-encoded from the Supplementary Videos for phones: black side bars are cropped, silent audio tracks are removed, and the opening title slides of Videos 1 and 3 are trimmed. On the page, Video 3 autoplays from the new user's part (0:33), with chapter buttons for the rest.
 
 ## Adding a video
 
