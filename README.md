@@ -1,5 +1,7 @@
 # Cross-user wearable hand interface: demo videos
 
+> **Confidential.** Unpublished results from a manuscript under review. Please do not share, record or redistribute the videos.
+
 Demo page for the poster **SB12.07.05**, MRS Fall Meeting 2026 (Boston, December 3, 2026).
 
 **Page:** https://yunheumlee.github.io/flsf-capx/

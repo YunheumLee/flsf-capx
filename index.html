@@ -9,6 +9,7 @@
 <meta property="og:description" content="One 60 s unlabelled calibration lets a new user use the hand interface: 86.1% on eight gestures, without labels or retraining.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#27364E">
+<meta name="robots" content="noindex, nofollow, noarchive">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234F6C99'/%3E%3Cpath d='M9 24V12m5 12V8m5 16V10m5 14V14' stroke='%23FDCD1F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,6 +48,10 @@
   .tag { font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
   .tag-event { background: var(--yellow); color: var(--navy); }
   .tag-status { background: rgba(255,255,255,0.12); color: #DCE3EE; font-weight: 600; }
+  .tag-conf { background: var(--red); color: #FFFFFF; letter-spacing: 0.06em; }
+  .conf { margin: 14px 0 0; display: flex; gap: 12px; align-items: flex-start; background: #F5E7E7; border: 1px solid #E3BDBC; border-radius: 14px; padding: 12px 16px; font-size: 14.5px; line-height: 1.45; color: #5C2A29; }
+  .conf svg { flex: none; width: 20px; height: 20px; margin-top: 1px; color: var(--red); }
+  .conf b { color: var(--red); }
   h1 { margin: 0 0 14px; font-size: 26px; line-height: 1.22; font-weight: 800; letter-spacing: -0.01em; }
   .authors { margin: 0 0 6px; font-size: 15px; color: #FFFFFF; }
   .authors sup { font-size: 0.7em; }
@@ -136,6 +141,7 @@
   <div class="wrap">
     <div class="tags">
       <span class="tag tag-event">MRS Fall Meeting 2026 · Poster SB12.07.05</span>
+      <span class="tag tag-conf">CONFIDENTIAL</span>
       <span class="tag tag-status">Manuscript under review</span>
     </div>
     <h1>Cross-user wearable hand interface through memoryless strain sensing and user-conditioned alignment</h1>
@@ -147,7 +153,9 @@
 
 <main class="wrap">
 
-  <p class="takehome"><span>TAKE-HOME</span>A memoryless strain sensor lets one 60 s unlabelled calibration serve a new user: 86.1% on eight gestures, without labels or retraining.</p>
+  <p class="takehome" style="margin-bottom: 0"><span>TAKE-HOME</span>A memoryless strain sensor lets one 60 s unlabelled calibration serve a new user: 86.1% on eight gestures, without labels or retraining.</p>
+
+  <div class="conf" role="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><p style="margin: 0"><b>Confidential.</b> Unpublished results from a manuscript under review. Please do not share this page, record or download the videos, or post them elsewhere.</p></div>
 
   <section aria-labelledby="new-user">
     <h2 id="new-user">A new user, right after calibration</h2>
@@ -239,7 +247,7 @@
   <div class="wrap">
     <p><b style="color: #FFFFFF">Poster SB12.07.05</b> · MRS Fall Meeting &amp; Exhibit 2026, Boston · December 3, 2026</p>
     <p>Contact: Yunheum Lee · <a href="https://yunheumlee.github.io/">yunheumlee.github.io</a></p>
-    <p>Videos are from the Supplementary Information of the manuscript under review. Please do not redistribute.</p>
+    <p><b style="color: #FFFFFF">Confidential.</b> Videos are from the Supplementary Information of a manuscript under review. Please do not share, record or redistribute.</p>
   </div>
 </footer>
 
@@ -251,6 +259,8 @@
     var featured = box.hasAttribute('data-featured');
     var v = document.createElement('video');
     v.controls = true;
+    v.setAttribute('controlsList', 'nodownload');
+    v.addEventListener('contextmenu', function (e) { e.preventDefault(); });
     v.playsInline = true;
     v.setAttribute('playsinline', '');
     v.preload = featured ? 'metadata' : 'none';
