@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cross-user Hand Interface: Demo Videos</title>
+<meta name="description" content="Demo videos: a new user controls XR and home devices after one 60 s unlabelled calibration, using a memoryless fibre strain sensor and user-conditioned alignment (CapX).">
+<meta property="og:title" content="Cross-user wearable hand interface: demo videos">
+<meta property="og:description" content="One 60 s unlabelled calibration lets a new user use the hand interface: 86.1% on eight gestures, without labels or retraining.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#27364E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234F6C99'/%3E%3Cpath d='M9 24V12m5 12V8m5 16V10m5 14V14' stroke='%23FDCD1F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #4F6C99;
+    --navy: #27364E;
+    --red: #BD5F5D;
+    --green: #5F7B5E;
+    --purple: #77688E;
+    --yellow: #FDCD1F;
+    --ink: #1B2433;
+    --muted: #5A6577;
+    --line: #DDE2EA;
+    --bg: #F4F6F9;
+    --card: #FFFFFF;
+    --blue-tint: #EAEDF3;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  a { color: var(--blue); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+  /* Header */
+  header { background: var(--navy); color: #FFFFFF; padding: 28px 0 32px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .tag { font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+  .tag-event { background: var(--yellow); color: var(--navy); }
+  .tag-status { background: rgba(255,255,255,0.12); color: #DCE3EE; font-weight: 600; }
+  h1 { margin: 0 0 14px; font-size: 26px; line-height: 1.22; font-weight: 800; letter-spacing: -0.01em; }
+  .authors { margin: 0 0 6px; font-size: 15px; color: #FFFFFF; }
+  .authors sup { font-size: 0.7em; }
+  .affil { margin: 0; font-size: 12.5px; line-height: 1.5; color: #B9C4D6; }
+  .note { margin: 6px 0 0; font-size: 12.5px; color: #B9C4D6; }
+
+  /* Take-home */
+  .takehome {
+    margin: -18px 0 0;
+    background: var(--yellow);
+    color: var(--navy);
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.4;
+    box-shadow: 0 6px 18px rgba(39,54,78,0.12);
+  }
+  .takehome span { display: block; font-size: 12px; letter-spacing: 0.08em; margin-bottom: 2px; }
+
+  section { margin: 36px 0; }
+  h2 { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 800; }
+  .lead { margin: 0 0 16px; color: var(--muted); font-size: 15px; }
+
+  /* Video cards */
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .player { position: relative; aspect-ratio: 16 / 9; background: #10161F; }
+  .player video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #10161F; }
+  .missing {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    color: #B9C4D6; font-size: 14px; text-align: center; padding: 16px;
+    background: repeating-linear-gradient(135deg, #1A2230 0 14px, #1E2737 14px 28px);
+  }
+  .missing b { color: #FFFFFF; font-size: 15px; }
+  .missing code { font-size: 12.5px; color: var(--yellow); }
+  .meta { padding: 14px 16px 16px; }
+  .label { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--blue); margin-bottom: 4px; }
+  .meta h3 { margin: 0 0 4px; font-size: 17px; line-height: 1.35; font-weight: 700; }
+  .meta p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .featured { border: 2px solid var(--blue); }
+  .featured .meta h3 { font-size: 19px; }
+
+  .grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: 1fr; gap: 12px; counter-reset: s; }
+  .step { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+  .num { flex: none; width: 34px; height: 34px; border-radius: 999px; color: #FFFFFF; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .step h3 { margin: 2px 0 2px; font-size: 16px; }
+  .step p { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+  /* Numbers */
+  .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+  .stat b { display: block; font-size: 28px; line-height: 1.1; font-weight: 800; }
+  .stat span { display: block; margin-top: 4px; font-size: 13.5px; color: var(--muted); line-height: 1.35; }
+
+  footer { background: var(--navy); color: #B9C4D6; padding: 28px 0 36px; font-size: 13.5px; }
+  footer a { color: #FFFFFF; }
+  footer p { margin: 0 0 8px; }
+
+  @media (min-width: 720px) {
+    header { padding: 40px 0 44px; }
+    h1 { font-size: 36px; }
+    .authors { font-size: 17px; }
+    .affil, .note { font-size: 13.5px; }
+    .takehome { font-size: 19px; padding: 18px 24px; margin-top: -22px; }
+    h2 { font-size: 25px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .stat b { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="tags">
+      <span class="tag tag-event">MRS Fall Meeting 2026 · Poster SB12.07.05</span>
+      <span class="tag tag-status">Manuscript under review</span>
+    </div>
+    <h1>Cross-user wearable hand interface through memoryless strain sensing and user-conditioned alignment</h1>
+    <p class="authors">Yunheum Lee<sup>1*</sup>, Min Kim<sup>2*</sup>, Kyunghyun Jo<sup>3*</sup>, Gun-Hee Lee<sup>4†</sup>, Sungho Jo<sup>2†</sup> and Seongjun Park<sup>3†</sup></p>
+    <p class="affil"><sup>1</sup> Department of Bio and Brain Engineering, KAIST · <sup>2</sup> School of Computing, KAIST · <sup>3</sup> School of Transdisciplinary Innovations, Seoul National University · <sup>4</sup> Department of Biomedical Engineering, UNIST</p>
+    <p class="note">* Equal contribution · † Corresponding authors</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <p class="takehome"><span>TAKE-HOME</span>A memoryless strain sensor lets one 60 s unlabelled calibration serve a new user: 86.1% on eight gestures, without labels or retraining.</p>
+
+  <section aria-labelledby="new-user">
+    <h2 id="new-user">A new user, right after calibration</h2>
+    <p class="lead">This user was not in the training data. They wear the sensor, record one 60 s calibration without gesture labels, and start using the interface.</p>
+    <article class="card featured">
+      <div class="player" data-src="videos/video3.mp4" data-poster="videos/video3.jpg" data-featured></div>
+      <div class="meta">
+        <span class="label">SUPPLEMENTARY VIDEO 3</span>
+        <h3>Generalizability of the model to new users</h3>
+        <p>A new user performs tasks in the virtual environment with the pre-built model after a single 60 s calibration, without labels or retraining.</p>
+      </div>
+    </article>
+  </section>
+
+  <section aria-labelledby="how">
+    <h2 id="how">How it works</h2>
+    <p class="lead">Users differ, and many sensors remember past movements. We remove the sensor memory in hardware and align users in software.</p>
+    <div class="steps">
+      <div class="step"><div class="num" style="background: var(--blue)">1</div><div><h3>Wear</h3><p>A liquid-metal fibre strain sensor (FLSF) runs along two fingers. Its resistance follows the current strain, not past movements.</p></div></div>
+      <div class="step"><div class="num" style="background: var(--purple)">2</div><div><h3>Calibrate once</h3><p>One 60 s recording without gesture labels. CapX encodes how this user's signals relate to hand joints, without updating model weights.</p></div></div>
+      <div class="step"><div class="num" style="background: var(--green)">3</div><div><h3>Use</h3><p>The same gesture from different users lands in one shared space. No weight updates for the new user.</p></div></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="use">
+    <h2 id="use">Using it</h2>
+    <p class="lead">Real devices and a real-time hand simulator, driven by two sensor channels.</p>
+    <div class="grid">
+      <article class="card">
+        <div class="player" data-src="videos/video5.mp4" data-poster="videos/video5.jpg"></div>
+        <div class="meta">
+          <span class="label">SUPPLEMENTARY VIDEO 5</span>
+          <h3>Gesture-based control of diverse real-world devices</h3>
+          <p>Smart-home devices (smart light, fan, humidifier and audio system) controlled by hand gestures.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="player" data-src="videos/video4.mp4" data-poster="videos/video4.jpg"></div>
+        <div class="meta">
+          <span class="label">SUPPLEMENTARY VIDEO 4</span>
+          <h3>Hand movement replication in a physics-based simulator</h3>
+          <p>A real-time hand simulator driven by joint angles decoded from the two sensor channels after a single calibration.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="built">
+    <h2 id="built">How the model was built</h2>
+    <p class="lead">Labelled data are recorded once to build the model. New users only calibrate.</p>
+    <div class="grid">
+      <article class="card">
+        <div class="player" data-src="videos/video1.mp4" data-poster="videos/video1.jpg"></div>
+        <div class="meta">
+          <span class="label">SUPPLEMENTARY VIDEO 1</span>
+          <h3>Data acquisition process for model training</h3>
+          <p>Synchronous collection of training data: hand kinematics from a webcam and strain signals from the FLSF sensors.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="player" data-src="videos/video2.mp4" data-poster="videos/video2.jpg"></div>
+        <div class="meta">
+          <span class="label">SUPPLEMENTARY VIDEO 2</span>
+          <h3>Task performance of the model builder in a virtual environment</h3>
+          <p>The model builder performs manipulation tasks in a virtual environment with the trained model.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="numbers">
+    <h2 id="numbers">Key numbers</h2>
+    <div class="stats">
+      <div class="stat"><b style="color: var(--blue)">86.1%</b><span>accuracy on users not in the training data</span></div>
+      <div class="stat"><b style="color: var(--purple)">60 s</b><span>one calibration, no gesture labels</span></div>
+      <div class="stat"><b style="color: var(--green)">0</b><span>weight updates for a new user</span></div>
+      <div class="stat"><b style="color: var(--red)">0.9%</b><span>sensor hysteresis in a loading–unloading cycle</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b style="color: #FFFFFF">Poster SB12.07.05</b> · MRS Fall Meeting &amp; Exhibit 2026, Boston · December 3, 2026</p>
+    <p>Contact: Yunheum Lee · <a href="https://yunheumlee.github.io/">yunheumlee.github.io</a></p>
+    <p>Videos are from the Supplementary Information of the manuscript under review. Please do not redistribute.</p>
+  </div>
+</footer>
+
+<script>
+  // Build each player from data-src. If the file is not uploaded yet, show a placeholder instead of a broken player.
+  document.querySelectorAll('.player').forEach(function (box) {
+    var src = box.getAttribute('data-src');
+    var poster = box.getAttribute('data-poster');
+    var featured = box.hasAttribute('data-featured');
+    var v = document.createElement('video');
+    v.controls = true;
+    v.playsInline = true;
+    v.setAttribute('playsinline', '');
+    v.preload = featured ? 'metadata' : 'none';
+    if (featured) { v.muted = true; v.loop = true; v.autoplay = true; v.setAttribute('muted', ''); }
+    var img = new Image();
+    img.onload = function () { v.poster = poster; };
+    img.src = poster;
+    var s = document.createElement('source');
+    s.src = src;
+    s.type = 'video/mp4';
+    s.addEventListener('error', function () { showMissing(box, src); });
+    v.appendChild(s);
+    box.appendChild(v);
+    // A HEAD request catches a missing file even when preload is "none".
+    fetch(src, { method: 'HEAD' }).then(function (r) { if (!r.ok) showMissing(box, src); }).catch(function () {});
+  });
+  function showMissing(box, src) {
+    if (box.querySelector('.missing')) return;
+    box.innerHTML = '<div class="missing"><b>Video coming soon</b><code>' + src + '</code></div>';
+  }
+</script>
+</body>
+</html>
